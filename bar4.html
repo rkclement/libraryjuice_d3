@@ -121,7 +121,7 @@ svg.append("g") /// Append yAxis
          .tickFormat("")
         );
 
-svg.selectAll('.chart') /// Here we select the CSS class chart. (Remember we assigned it earlier?)
+/*svg.selectAll('.chart') /// Here we select the CSS class chart. (Remember we assigned it earlier?)
     .data(data) //Bind the chart to data.
     .enter()
     .append('rect') // add SVG rectangles
@@ -130,9 +130,23 @@ svg.selectAll('.chart') /// Here we select the CSS class chart. (Remember we ass
     .attr('y', function(d) { return height - margin.top - margin.bottom - (height - margin.top - margin.bottom - y(d.total)) })
     /// Specification how tall bars should be in pixels
     .attr('width', 25) // Width of bar charts
-    .attr('height', function(d) { return height - margin.top - margin.bottom - y(d.total) }); //height of bars in pixel
+    .attr('height', function(d) { return height - margin.top - margin.bottom - y(d.total) }); //height of bars in pixel*/
 
- svg.selectAll(".rect") /// select all DOM elements that have rect class
+/*svg.selectAll('.chart') /// Select class chart
+    .data(data) //Bind the chart to data.
+    .enter()
+    .append('rect')                       
+    .attr("x", function(d) { return x(new Date(d.date)); }) 
+    //The x attribute defines the left position of the rectangle
+    .attr("y", function(d) { return y(d.total); })
+    ///The y attribute defines the top position of the rectangle
+    .attr("width", "10")
+    .attr("height", "10")  
+    //The width and height attributes of the <rect> element define the height and the width of the rectangle 
+    /// Width and height are specified in pixels 
+    .style("fill", "steelblue"); */
+
+ /*svg.selectAll(".rect") /// select all DOM elements that have rect class
      .data(data) /// bind to data
    .enter().append("svg:text") //append text labels with values
      .attr("x", function(d) { return x(new Date(d.date)); }) // position
@@ -140,7 +154,23 @@ svg.selectAll('.chart') /// Here we select the CSS class chart. (Remember we ass
      .attr("dx", ".75em") // padding-right
      .attr("dy", "1.50em") // padding-left
      .attr("text-anchor", "center") // text-align: left
-     .text(function(d) { return d.total }); /// Text    
+     .text(function(d) { return d.total }); /// Text */
+
+svg.selectAll('.chart') /// Here we select the CSS class chart. (Remember we assigned it earlier?)
+    .data(data) //Bind the chart to data.
+    .enter()
+    .append('circle')  //// More precisely add classes cicle for each datapoint in the data                     
+    .attr("cx", function(d) { return x(new Date(d.date)); }) 
+    ///The cx and cy attributes define the x and y coordinates of the center of the circle. 
+    //If cx and cy are omitted, the circle's center is set to (0,0)
+    //.attr("cy", function(d) { return y(d.total); })
+    .attr("r", function (d) { return d.total; })
+    //The r attribute defines the radius of the circle
+    .style({"stroke": "steelblue", "fill": "steelblue", "opacity": "0.7"});
+     
+    /// Color of the circle. You can also add here 
+    /// stroke, stroke-width
+    ///opacity 
      
 //// Adding graph Title     
 svg.append("text")
